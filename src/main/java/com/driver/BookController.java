@@ -49,17 +49,17 @@ public class BookController {
     }
 
     @GetMapping("/get-book-by-id/{id}")
-    public ResponseEntity<Book> getBookById(@PathVariable("id") int id){
+    public ResponseEntity<Book> getBookById(@PathVariable("id") String id){
         for(Book book:bookList){
-            if(id== book.getId()) return new ResponseEntity(book,HttpStatus.ACCEPTED);
+            if(id.equals(book.getId())) return new ResponseEntity(book,HttpStatus.ACCEPTED);
         }
         return null;
     }
 
     @DeleteMapping("/delete-book-by-id/{id}")
-    public ResponseEntity<String> deleteBookById(@PathVariable("id") int id){
+    public ResponseEntity<String> deleteBookById(@PathVariable("id") String id){
         for(Book book:bookList){
-            if(id== book.getId()){
+            if(id.equals(book.getId())){
                 bookList.remove(book);
                 return new ResponseEntity("Deleted",HttpStatus.ACCEPTED);
             }
